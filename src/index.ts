@@ -5,7 +5,7 @@ import {
   CallToolRequestSchema,
   ListRootsResultSchema,
   ListToolsRequestSchema,
-  RootsListChangedNotificationSchema
+  RootsListChangedNotificationSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { spawn } from "child_process";
 import { access } from "fs/promises";
@@ -334,11 +334,4 @@ async function main() {
   await server.run();
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((error) => {
-    console.error("Server failed to start:", error);
-    process.exit(1);
-  });
-}
-
-export { RipgrepServer };
+main();
