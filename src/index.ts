@@ -120,7 +120,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: "object",
           properties: {
             pattern: { type: "string", description: "The search pattern (regex by default)" },
-            path: { type: "string", description: "Directory or file(s) to search." },
+            path: { type: "string", description: "Optional - specific directory or file(s) to search (default: all MCP server roots)" },
             caseSensitive: { type: "boolean", description: "Use case sensitive search (default: auto)" },
             filePattern: { type: "string", description: "Filter by file type or glob" },
             maxResults: { type: "number", description: "Limit the number of matching lines" },
@@ -137,11 +137,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: "object",
           properties: {
             pattern: { type: "string", description: "The search pattern (regex by default)" },
-            path: { type: "string", description: "Directory or file(s) to search." },
+            path: { type: "string", description: "Optional - specific directory or file(s) to search (default: all MCP server roots)" },
             caseSensitive: { type: "boolean", description: "Use case sensitive search (default: auto)" },
             fixedStrings: { type: "boolean", description: "Treat pattern as a literal string, not a regex" },
             filePattern: { type: "string", description: "Filter by file type or glob" },
-            fileType: { type: "string", description: "Filter by file type (e.g., js, py)" },
+            fileType: { type: "string", description: "Filter by file type (e.g., getPathsth, py)" },
             maxResults: { type: "number", description: "Limit the number of matching lines" },
             context: { type: "number", description: "Show N lines before and after each match" },
             invertMatch: { type: "boolean", description: "Show lines that don't match the pattern" },
@@ -162,7 +162,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: "object",
           properties: {
             pattern: { type: "string", description: "The search pattern (regex by default)" },
-            path: { type: "string", description: "Directory or file(s) to search." },
+            path: { type: "string", description: "Optional - specific directory or file(s) to search (default: all MCP server roots)" },
             caseSensitive: { type: "boolean", description: "Use case sensitive search (default: auto)" },
             filePattern: { type: "string", description: "Filter by file type or glob" },
             countLines: { type: "boolean", description: "Count matching lines instead of total matches" },
@@ -177,7 +177,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: "object",
           properties: {
-            path: { type: "string", description: "Directory or file(s) to search." },
+            path: { type: "string", description: "Optional - specific directory or file(s) to list (default: all MCP server roots)" },
             filePattern: { type: "string", description: "Filter by file type or glob" },
             fileType: { type: "string", description: "Filter by file type (e.g., js, py)" },
             includeHidden: { type: "boolean", description: "Include hidden files and directories" }
