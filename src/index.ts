@@ -56,6 +56,16 @@ class RipgrepServer {
                   type: "string",
                   description: "The pattern to search for (regex supported)",
                 },
+                max_results: {
+                  type: "number",
+                  description: "Maximum number of results to return",
+                  default: 1000,
+                },
+                max_matched_files: {
+                  type: "number",
+                  description: "Maximum number of matched files to return",
+                  default: 100,
+                },
                 path: {
                   type: "string",
                   description: "Optional specific path to search (defaults to all available roots)",
@@ -146,7 +156,7 @@ class RipgrepServer {
   }
 
   private async handleRipgrepSearch(args: any) {
-    const { pattern, path: specifiedPath, root_name, case_sensitive = false, context_lines = 0 } = args;
+    const { pattern, path: specifiedPath, root_name, case_sensitive = false, context_lines = 0, max_results = 1000, max_matched_files = 100 } = args;
 
     if (!pattern) {
       throw new Error("Pattern is required");
@@ -213,6 +223,14 @@ class RipgrepServer {
 
     if (context_lines > 0) {
       ripgrepArgs.push(`--context=${context_lines}`);
+    }
+
+    if (max_results > 0) {
+      ripgrepArgs.push(`--max-results=${max_results}`);
+    }
+
+    if (max_matched_files > 0) {
+      ripgrepArgs.push(`--max-matched-files=${max_matched_files}`);
     }
 
     ripgrepArgs.push(pattern);
