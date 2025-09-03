@@ -2,6 +2,11 @@
 
 An MCP server that provides ripgrep (rg) search capabilities to any MCP client such as Claude.
 
+> [!NOTE]
+> This is a fork of [mcp-ripgrep](https://github.com/mcollina/mcp-ripgrep) that adds the ability to search
+> in [roots](https://modelcontextprotocol.io/specification/2025-06-18/client/roots) by default.
+> This change was made to support some rapid prototyping and should not be used in production.
+
 ## Overview
 
 This server provides a Model Context Protocol (MCP) interface for the powerful [ripgrep](https://github.com/BurntSushi/ripgrep) search tool. It enables Claude AI and other MCP-compatible clients to perform high-performance text searches across files on your system.
@@ -30,7 +35,7 @@ To use this MCP server with Claude for Desktop:
      }
    }
    ```
-   
+
    Replace `/path/to/mcp-ripgrep` with the absolute path to where you cloned this repository.
 
 3. Restart Claude for Desktop.
