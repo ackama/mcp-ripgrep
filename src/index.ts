@@ -212,7 +212,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
     switch (toolName) {
       case "search": {
         const pattern = String(args.pattern || "");
-        const path = String(args.path) || (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
+        const path = args.path ? String(args.path) : (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
         const caseSensitive = typeof args.caseSensitive === 'boolean' ? args.caseSensitive : undefined;
         const filePattern = args.filePattern ? String(args.filePattern) : undefined;
         const maxResults = typeof args.maxResults === 'number' ? args.maxResults : undefined;
@@ -280,7 +280,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
 
       case "advanced-search": {
         const pattern = String(args.pattern || "");
-        const path = String(args.path) || (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
+        const path = args.path ? String(args.path) : (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
         const caseSensitive = typeof args.caseSensitive === 'boolean' ? args.caseSensitive : undefined;
         const fixedStrings = typeof args.fixedStrings === 'boolean' ? args.fixedStrings : undefined;
         const filePattern = args.filePattern ? String(args.filePattern) : undefined;
@@ -398,7 +398,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
 
       case "count-matches": {
         const pattern = String(args.pattern || "");
-        const path = String(args.path) || (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
+        const path = args.path ? String(args.path) : (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
         const caseSensitive = typeof args.caseSensitive === 'boolean' ? args.caseSensitive : undefined;
         const filePattern = args.filePattern ? String(args.filePattern) : undefined;
         const countLines = typeof args.countLines === 'boolean' ? args.countLines : true;
@@ -458,7 +458,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, extra) => {
       }
 
       case "list-files": {
-        const path = String(args.path) || (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
+        const path = args.path ? String(args.path) : (await getRoots()).map(root => root.uri.replace("file://", "")).join(" ");
         const filePattern = args.filePattern ? String(args.filePattern) : undefined;
         const fileType = args.fileType ? String(args.fileType) : undefined;
         const includeHidden = typeof args.includeHidden === 'boolean' ? args.includeHidden : undefined;
